@@ -14,7 +14,7 @@ class Solution:
     #     backtrack(0, 0)  
     #     return count
         #TLE
-        d = {}  
+        d = {} 
         A = nums 
         n = len(nums)
 
