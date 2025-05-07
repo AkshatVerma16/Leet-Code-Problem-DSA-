@@ -1,0 +1,35 @@
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+    # #using backtracking   
+    #     count = 0  
+    #     def backtrack(S, index):
+    #         nonlocal count
+    #         if index == len(nums):
+    #             if S == target:
+    #                 count += 1
+    #             return
+    #         backtrack(S + nums[index], index + 1)
+    #         backtrack(S - nums[index], index + 1)
+
+    #     backtrack(0, 0)
+    #     return count
+        #TLE
+        d = {}  
+        A = nums 
+        n = len(nums)
+
+        def fun(s, index, t, n):
+            if (s, index) in d:
+                return d[(s, index)]
+
+            if index == n:
+                if s == t:
+                    return 1
+                return 0
+            else:
+                c1 = fun(s + A[index], index + 1, t, n)
+                c2 = fun(s - A[index], index + 1, t, n)
+                d[(s, index)] = c1 + c2
+                return c1 + c2
+
+        return fun(0, 0, target, n)
